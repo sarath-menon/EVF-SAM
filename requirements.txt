@@ -1,24 +1,23 @@
-# --extra-index-url https://download.pytorch.org/whl/cu117
-# torch==2.0.1
-# torchvision==0.15.2
+torch
+torchvision
 packaging
 sentencepiece
-einops==0.4.1
-fastapi==0.100.1
-markdown2==2.4.10
+einops
+fastapi
+markdown2
 numpy
 openai==0.27.8
 opencv_python
-Pillow==9.4.0
-pycocotools==2.0.6
-ray==2.6.1
-Requests==2.31.0
-shortuuid==1.0.11
+Pillow
+pycocotools
+ray
+Requests
+shortuuid
 tqdm
 transformers
-uvicorn==0.23.2
-scipy==1.11.2
-bitsandbytes==0.41.1
+uvicorn
+scipy
+bitsandbytes
 timm
 blobfile
 mypy
@@ -28,9 +27,9 @@ tensorboardX
 ftfy
 opencv-python
 pyarrow
-torchmetrics==0.7.3
+torchmetrics
 deepspeed
 pycocoevalcap
-torchscale==0.2.0
+torchscale
 hydra-core
 accelerate

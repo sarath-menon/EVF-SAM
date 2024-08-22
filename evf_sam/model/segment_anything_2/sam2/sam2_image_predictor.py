@@ -12,9 +12,9 @@ import numpy as np
 import torch
 from PIL.Image import Image
 
-from model.segment_anything_2.sam2.modeling.sam2_base import SAM2Base
+from evf_sam.model.segment_anything_2.sam2.modeling.sam2_base import SAM2Base
 
-from model.segment_anything_2.sam2.utils.transforms import SAM2Transforms
+from evf_sam.model.segment_anything_2.sam2.utils.transforms import SAM2Transforms
 
 
 class SAM2ImagePredictor:

@@ -129,7 +129,7 @@ def init_models(args):
             args.version, low_cpu_mem_usage=True, **kwargs
         )
     elif args.model_type=="sam2":
-        from model.evf_sam2 import EvfSam2Model
+        from evf_sam.model.evf_sam2 import EvfSam2Model
         model = EvfSam2Model.from_pretrained(
             args.version, low_cpu_mem_usage=True, **kwargs
         )

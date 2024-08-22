@@ -10,10 +10,10 @@ import torch.nn.functional as F
 
 from torch.nn.init import trunc_normal_
 
-from model.segment_anything_2.sam2.modeling.sam.mask_decoder import MaskDecoder
-from model.segment_anything_2.sam2.modeling.sam.prompt_encoder import PromptEncoder
-from model.segment_anything_2.sam2.modeling.sam.transformer import TwoWayTransformer
-from model.segment_anything_2.sam2.modeling.sam2_utils import get_1d_sine_pe, MLP, select_closest_cond_frames
+from evf_sam.model.segment_anything_2.sam2.modeling.sam.mask_decoder import MaskDecoder
+from evf_sam.model.segment_anything_2.sam2.modeling.sam.prompt_encoder import PromptEncoder
+from evf_sam.model.segment_anything_2.sam2.modeling.sam.transformer import TwoWayTransformer
+from evf_sam.model.segment_anything_2.sam2.modeling.sam2_utils import get_1d_sine_pe, MLP, select_closest_cond_frames
 
 # a large negative value as a placeholder score for missing objects
 NO_OBJ_SCORE = -1024.0

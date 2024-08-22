@@ -49,7 +49,7 @@ def build_sam2_video_predictor(
     apply_postprocessing=True,
 ):
     hydra_overrides = [
-        "++model._target_=model.segment_anything_2.sam2.sam2_video_predictor.SAM2VideoPredictor",
+        "++model._target_=evf_sam.model.segment_anything_2.sam2.sam2_video_predictor.SAM2VideoPredictor",
     ]
     if apply_postprocessing:
         hydra_overrides_extra = hydra_overrides_extra.copy()

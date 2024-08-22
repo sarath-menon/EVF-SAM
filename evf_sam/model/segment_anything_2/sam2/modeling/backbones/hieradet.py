@@ -11,13 +11,13 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from model.segment_anything_2.sam2.modeling.backbones.utils import (
+from evf_sam.model.segment_anything_2.sam2.modeling.backbones.utils import (
     PatchEmbed,
     window_partition,
     window_unpartition,
 )
 
-from model.segment_anything_2.sam2.modeling.sam2_utils import DropPath, MLP
+from evf_sam.model.segment_anything_2.sam2.modeling.sam2_utils import DropPath, MLP
 
 
 def do_pool(x: torch.Tensor, pool: nn.Module, norm: nn.Module = None) -> torch.Tensor:

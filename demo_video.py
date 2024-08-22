@@ -20,7 +20,7 @@ tokenizer = AutoTokenizer.from_pretrained(
         use_fast=False,
     )
 
-from model.evf_sam2_video import EvfSam2Model
+from evf_sam.model.evf_sam2_video import EvfSam2Model
 kwargs = {
     "torch_dtype": torch.half,
 }

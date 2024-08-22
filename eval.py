@@ -8,12 +8,12 @@ import torch
 import torch.nn.functional as F
 from transformers import AutoTokenizer, BitsAndBytesConfig
 
-from model.evf_sam import EvfSamModel
+from evf_sam.model.evf_sam import EvfSamModel
 import os
-from model.segment_anything.utils.transforms import ResizeLongestSide
-from utils.utils import (AverageMeter, ProgressMeter, Summary, dict_to_cuda,
+from evf_sam.model.segment_anything.utils.transforms import ResizeLongestSide
+from evf_sam.utils.utils import (AverageMeter, ProgressMeter, Summary, dict_to_cuda,
                          intersectionAndUnionGPU)
-from utils.dataset import collate_fn, ValDataset
+from evf_sam.utils.dataset import collate_fn, ValDataset
 from functools import partial
 import tqdm
 from torch.utils.data import DataLoader, DistributedSampler

@@ -9,7 +9,7 @@ import torch.nn.functional as F
 from torchvision import transforms
 from torchvision.transforms.functional import InterpolationMode
 from transformers import AutoTokenizer, BitsAndBytesConfig
-from model.segment_anything.utils.transforms import ResizeLongestSide
+from evf_sam.model.segment_anything.utils.transforms import ResizeLongestSide
 
 
 

@@ -6,8 +6,8 @@ import torch.nn.functional as F
 from torchvision import transforms
 from torchvision.transforms.functional import InterpolationMode
 from transformers import AutoTokenizer, BitsAndBytesConfig
-from model.segment_anything.utils.transforms import ResizeLongestSide
-from model.evf_sam2 import EvfSam2Model
+from evf_sam.model.segment_anything.utils.transforms import ResizeLongestSide
+from evf_sam.model.evf_sam2 import EvfSam2Model
 
 class EVFInference:
     def __init__(self, version, vis_save_path="./infer", precision="fp16", image_size=224, model_max_length=512, local_rank=0, load_in_8bit=False, load_in_4bit=False, model_type="ori", image_path="./assets/zebra.jpg", prompt="zebra top left"):

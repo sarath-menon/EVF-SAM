@@ -1,1 +1,0 @@
-from model.evf_sam2 import EvfSam2Model

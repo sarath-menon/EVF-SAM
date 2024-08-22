@@ -1,20 +1,17 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
 import os
 
 from setuptools import find_packages, setup
 
+# Add this import at the top of the file
+import site
+import sys
+
+site.ENABLE_USER_SITE = True
+
 # Package metadata
-NAME = "evf_sam2"
+NAME = "evf_sam"
 VERSION = "1.0"
-DESCRIPTION = "EVF SAM: Efficient Video Frame Segmentation with Segment Anything Model"
-URL = "https://github.com/facebookresearch/segment-anything-2"
-AUTHOR = "Meta AI"
-AUTHOR_EMAIL = "segment-anything@meta.com"
-LICENSE = "Apache 2.0"
+DESCRIPTION = "EVF-SAM: Efficient Video Frame-Level Segmentation with SAM"
 
 # Read the contents of README file
 with open("README.md", "r", encoding="utf-8") as f:
@@ -53,12 +50,15 @@ setup(
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
-    url=URL,
-    author=AUTHOR,
-    author_email=AUTHOR_EMAIL,
-    license=LICENSE,
     packages=find_packages(exclude=['tests', 'scripts']),
     include_package_data=True,
     install_requires=REQUIRED_PACKAGES,
     python_requires=">=3.10.0",
+    # Add these new parameters
+    use_scm_version=True,
+    setup_requires=['setuptools_scm'],
 )
+
+# Add this at the end of the file
+if __name__ == "__main__":
+    sys.path.insert(0, os.path.dirname(__file__))

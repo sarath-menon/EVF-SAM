@@ -93,6 +93,15 @@ def init_models(args):
     elif args.precision == "fp16":
         torch_dtype = torch.half
 
+    # select the device for computation
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
+    print(f"Using {device} for inference")
+
     kwargs = {"torch_dtype": torch_dtype}
     if args.load_in_4bit:
         kwargs.update(
@@ -135,7 +144,7 @@ def init_models(args):
         )
 
     if (not args.load_in_4bit) and (not args.load_in_8bit):
-        model = model.cuda()
+        model = model.to(device)
     model.eval()
 
     return tokenizer, model

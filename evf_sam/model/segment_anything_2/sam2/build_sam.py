@@ -7,9 +7,10 @@
 import logging
 
 import torch
-from hydra import compose
+from hydra import initialize, compose
 from hydra.utils import instantiate
 from omegaconf import OmegaConf
+from hydra.core.global_hydra import GlobalHydra
 
 def build_sam2(
     config_file,
@@ -19,25 +20,28 @@ def build_sam2(
     hydra_overrides_extra=[],
     apply_postprocessing=True,
 ):
-
-    if apply_postprocessing:
-        hydra_overrides_extra = hydra_overrides_extra.copy()
-        hydra_overrides_extra += [
-            # dynamically fall back to multi-mask if the single mask is not stable
-            "++model.sam_mask_decoder_extra_args.dynamic_multimask_via_stability=true",
-            "++model.sam_mask_decoder_extra_args.dynamic_multimask_stability_delta=0.05",
-            "++model.sam_mask_decoder_extra_args.dynamic_multimask_stability_thresh=0.98",
-        ]
-    # Read config and init model
-    cfg = compose(config_name=config_file, overrides=hydra_overrides_extra)
-    OmegaConf.resolve(cfg)
-    model = instantiate(cfg.model, _recursive_=True)
-    _load_checkpoint(model, ckpt_path)
-    if device:
-        model = model.to(device)
-    if mode == "eval":
-        model.eval()
-    return model
+    if GlobalHydra.instance().is_initialized():
+        GlobalHydra.instance().clear()
+        
+    with initialize(config_path="../sam2_configs", version_base="1.2"):
+        if apply_postprocessing:
+            hydra_overrides_extra = hydra_overrides_extra.copy()
+            hydra_overrides_extra += [
+                # dynamically fall back to multi-mask if the single mask is not stable
+                "++model.sam_mask_decoder_extra_args.dynamic_multimask_via_stability=true",
+                "++model.sam_mask_decoder_extra_args.dynamic_multimask_stability_delta=0.05",
+                "++model.sam_mask_decoder_extra_args.dynamic_multimask_stability_thresh=0.98",
+            ]
+        # Read config and init model
+        cfg = compose(config_name=config_file, overrides=hydra_overrides_extra)
+        OmegaConf.resolve(cfg)
+        model = instantiate(cfg.model, _recursive_=True)
+        _load_checkpoint(model, ckpt_path)
+        if device:
+            model = model.to(device)
+        if mode == "eval":
+            model.eval()
+        return model
 
 
 def build_sam2_video_predictor(

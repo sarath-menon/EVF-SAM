@@ -5,12 +5,12 @@
 # LICENSE file in the root directory of this source tree.
 
 
-from hydra import initialize_config_module
+# from hydra import initialize_config_module
 
-# reset hydra if it's already initialized
-from hydra.core.global_hydra import GlobalHydra
+# # reset hydra if it's already initialized
+# from hydra.core.global_hydra import GlobalHydra
 
-if GlobalHydra.instance().is_initialized():
-    GlobalHydra.instance().clear()
+# if GlobalHydra.instance().is_initialized():
+#     GlobalHydra.instance().clear()
 
-initialize_config_module("evf_sam/model/segment_anything_2/sam2_configs", version_base="1.2")
+# initialize_config_module("evf_sam/model/segment_anything_2/sam2_configs", version_base="1.2")
